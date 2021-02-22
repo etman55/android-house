@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">ClubHouse</string>
+    <!--        Network       -->
+    <string name="network_error">Please check your internet connection or try again later</string>
+    <string name="unknown_error">Something went wrong, Please try later</string>
+    <string name="retry">Retry</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

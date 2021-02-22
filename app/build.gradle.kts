@@ -5,7 +5,7 @@ import Dependencies.Network
 import Dependencies.View
 import Dependencies.Misc
 import Dependencies.Test
-import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+import Dependencies.FireBase
 
 plugins {
     androidApplication
@@ -45,6 +45,8 @@ android {
 
     buildTypes {
         named(BuildType.DEBUG) {
+            val baseUrl = project.properties["baseUrl"].toString()
+            buildConfigString("BASE_URL", baseUrl)
             isMinifyEnabled = BuildTypeDebug.isMinifyEnabled
             applicationIdSuffix = BuildTypeDebug.applicationIdSuffix
             versionNameSuffix = BuildTypeDebug.versionNameSuffix
@@ -68,7 +70,7 @@ dependencies {
         implementation(viewModel)
         implementation(lifecycleReactiveStreams)
     }
-
+    implementation(FireBase.firebaseMessaging)
     kapt(DI.AnnotationProcessor.daggerHiltGoogle)
     kapt(DI.AnnotationProcessor.daggerHiltAndroidx)
 

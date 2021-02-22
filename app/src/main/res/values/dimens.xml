@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="space_1x">1dp</dimen>
+    <dimen name="space_8x">8dp</dimen>
+    <dimen name="space_16x">16dp</dimen>
+    <dimen name="space_24x">24dp</dimen>
+    <dimen name="space_32x">32dp</dimen>
+    <dimen name="space_48x">48dp</dimen>
+    <dimen name="space_64x">64dp</dimen>
+    <dimen name="space_96x">96dp</dimen>
+    <!--  text sizes  -->
+    <dimen name="font_16x">16sp</dimen>
+    <dimen name="font_24x">24sp</dimen>
+    <dimen name="font_32x">32sp</dimen>
+</resources>
