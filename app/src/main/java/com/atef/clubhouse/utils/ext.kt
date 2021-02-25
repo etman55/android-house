@@ -4,6 +4,10 @@ import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.Paint
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Build
@@ -12,12 +16,8 @@ import android.telephony.SubscriptionInfo
 import android.telephony.SubscriptionManager
 import android.telephony.TelephonyManager
 import android.view.View
+import com.atef.clubhouse.R
 
-/**
- * @author Atef Etman.
- * @email etman850@gmail.com.
- * @phone +201090705106.
- */
 
 fun getIMEIDeviceId(context: Context): String {
     var deviceId = ""
@@ -95,4 +95,18 @@ fun Activity?.fullScreen() {
             or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
             or View.SYSTEM_UI_FLAG_FULLSCREEN
             or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+}
+
+fun String.textAsBitmap(context: Context): Bitmap {
+    val paint = Paint(Paint.ANTI_ALIAS_FLAG)
+    paint.textSize = context.resources.getDimension(R.dimen.space_16x)
+    paint.color = Color.RED
+    paint.textAlign = Paint.Align.LEFT
+    val baseline = -paint.ascent()
+    val width = (paint.measureText(this) + 0.5f).toInt()
+    val height = (baseline + paint.descent() + 0.5f).toInt()
+    val image = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
+    val canvas = Canvas(image)
+    canvas.drawText(this, 0F, baseline, paint)
+    return image
 }

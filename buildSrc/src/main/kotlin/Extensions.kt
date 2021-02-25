@@ -7,11 +7,6 @@ import org.gradle.kotlin.dsl.apply
 import org.gradle.plugin.use.PluginDependenciesSpec
 import org.gradle.plugin.use.PluginDependencySpec
 
-/**
- * @author  Atef Etman.
- * @email   etman850@gmail.com.
- * @phone   +201090705106.
- */
 
 val PluginDependenciesSpec.androidApplication: PluginDependencySpec
     get() = id("com.android.application")
@@ -67,4 +62,4 @@ fun DependencyHandler.addPlugins(list: List<String>) {
 }
 
 fun DependencyHandler.kapt(dependencyNotation: String): Dependency? =
-        add("kapt", dependencyNotation)
+    add("kapt", dependencyNotation)

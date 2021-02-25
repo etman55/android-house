@@ -1,14 +1,8 @@
-/**
- * @author  Atef Etman.
- * @email   etman850@gmail.com.
- * @phone   +201090705106.
- */
-
 const val kotlinVersion = "1.4.0"
 const val kotlinAndroid = "android"
 const val kotlinAndroidExtension = "android.extensions"
 const val kotlinKapt = "kapt"
-const val ktLintVersion = "0.36.0"
+const val ktLintVersion = "0.37.0"
 
 object Config {
     object Version {

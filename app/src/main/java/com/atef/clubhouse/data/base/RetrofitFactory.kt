@@ -1,9 +1,12 @@
 package com.atef.clubhouse.data.base
 
 import android.content.Context
-import com.atef.clubhouse.data.remote.base.calladapter.NetworkResponseAdapterFactory
+import com.atef.clubhouse.data.feature.auth.AuthLocalDataSource
+import com.atef.clubhouse.data.remote.base.calladapter.ResultCoroutinesCallAdapterFactory
 import com.atef.clubhouse.data.remote.base.interceptor.ConnectivityInterceptor
+import com.atef.clubhouse.data.remote.base.interceptor.HeadersInterceptor
 import com.atef.clubhouse.data.remote.base.interceptor.NetworkInterceptor
+import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import java.io.File
@@ -20,13 +23,15 @@ object RetrofitFactory {
         baseUrl: String,
         classTarget: Class<*>,
         isDebug: Boolean,
-        context: Context
+        context: Context,
+        authLocalDataSource: AuthLocalDataSource,
     ): Any {
         val okHttpClient = makeOkHttpClient(
             makeHttpCache(context),
             makeNetworkInterceptor(),
             makeLoggingInterceptor(isDebug),
-            makeConnectivityInterceptor(context)
+            makeConnectivityInterceptor(context),
+            makeHeadersInterceptor(context, authLocalDataSource)
         )
         return makeApiHandler(
             baseUrl,
@@ -40,12 +45,12 @@ object RetrofitFactory {
         baseUrl: String,
         okHttpClient: OkHttpClient,
         gson: Gson,
-        classTarget: Class<*>
+        classTarget: Class<*>,
     ): Any {
         val retrofit = Retrofit.Builder()
             .baseUrl(baseUrl)
             .client(okHttpClient)
-            .addCallAdapterFactory(NetworkResponseAdapterFactory())
+            .addCallAdapterFactory(ResultCoroutinesCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create(gson))
             .build()
         return retrofit.create(classTarget)
@@ -55,10 +60,12 @@ object RetrofitFactory {
         cache: Cache,
         networkInterceptor: NetworkInterceptor,
         httpLoggingInterceptor: HttpLoggingInterceptor,
-        connectivityInterceptor: ConnectivityInterceptor
+        connectivityInterceptor: ConnectivityInterceptor,
+        headersInterceptor: HeadersInterceptor,
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .cache(cache)
+            .addInterceptor(headersInterceptor)
             .addInterceptor(httpLoggingInterceptor)
             .addInterceptor(connectivityInterceptor)
             .addNetworkInterceptor(networkInterceptor)
@@ -93,4 +100,10 @@ object RetrofitFactory {
         ConnectivityInterceptor(context)
 
     private fun makeNetworkInterceptor() = NetworkInterceptor()
+
+    private fun makeHeadersInterceptor(
+        context: Context,
+        authLocalDataSource: AuthLocalDataSource,
+    ) = HeadersInterceptor(context, authLocalDataSource)
+
 }

@@ -32,7 +32,6 @@ class PreferencesGateway @Inject constructor(val prefs: SharedPreferences) {
 
     companion object {
         const val DEFAULT_VALUE = ""
-        const val KEY_TOKEN = "KEY_TOKEN"
     }
 }
 
@@ -40,7 +39,7 @@ inline fun <reified T : Any> Any.fromObjectToString(targetClass: Class<T>): Stri
     return Gson().toJson(this, targetClass)
 }
 
-fun String.fromStringToObject(targetClass: Class<*>): Any? {
+inline fun <reified T : Any> String.fromStringToObject(targetClass: Class<T>): T? {
     return Gson().fromJson(this, targetClass)
 }
 

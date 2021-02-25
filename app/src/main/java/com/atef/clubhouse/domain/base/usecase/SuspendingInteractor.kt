@@ -1,4 +1,4 @@
-package com.example.nytcleanarcitecture.domain.base.usecase
+package com.atef.clubhouse.domain.base.usecase
 
 import com.atef.clubhouse.domain.base.coroutines.CoroutineDispatcherProvider
 import kotlinx.coroutines.withContext

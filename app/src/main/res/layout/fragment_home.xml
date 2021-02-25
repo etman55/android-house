@@ -4,15 +4,34 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.HomeFragment">
+    tools:context=".ui.home.HomeFragment">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:id="@+id/welcomeTxt"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/hello_blank_fragment"
+        android:layout_marginStart="@dimen/space_32x"
+        android:layout_marginEnd="@dimen/space_32x"
+        android:gravity="center"
+        android:text="@string/welcome_message"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/logoutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_32x"
+        android:paddingStart="@dimen/space_48x"
+        android:paddingEnd="@dimen/space_48x"
+        android:text="@string/logout"
+        android:textAllCaps="false"
+        app:backgroundTint="@color/colorAccent"
+        app:cornerRadius="@dimen/space_24x"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/welcomeTxt" />
 </androidx.constraintlayout.widget.ConstraintLayout>

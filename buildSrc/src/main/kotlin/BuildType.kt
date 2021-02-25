@@ -1,9 +1,3 @@
-/**
- * @author  Atef Etman.
- * @email   etman850@gmail.com.
- * @phone   +201090705106.
- */
-
 interface BuildType {
 
     companion object {
