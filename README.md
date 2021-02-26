@@ -92,7 +92,7 @@ They're different tools with different strengths. Like a tank and a cannon, they
 >     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 >     implementation("com.squareup.okhttp3:okhttp:4.7.2")
 
- - Make Retrofit Calls. NOTE: period could be 1 or 7 or 30 according to new york times api
+ - Make Retrofit Calls.
 
 
 ```kotlin
@@ -104,7 +104,6 @@ They're different tools with different strengths. Like a tank and a cannon, they
  - so async will run in background then return its promised result to parent coroutine which
  created by launch.
  - when we get a result, it is up to us to do handle the result.
- - also we can use kotlin flow if we want
 
 
 
@@ -134,14 +133,6 @@ They're different tools with different strengths. Like a tank and a cannon, they
    responsibility , and according to `Single responsibility principle`
   in `SOLID (object-oriented design)` , so don't break this concept by
    mixing the responsibilities .
-
-## LICENSE
- http://www.apache.org/licenses/LICENSE-2.0
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
 
 
 
