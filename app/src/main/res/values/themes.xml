@@ -4,10 +4,10 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryVariant">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorSecondary">@color/colorPrimary</item>
         <item name="colorSecondaryVariant">@color/colorPrimary</item>
-        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorAccent</item>
         <item name="android:toolbarStyle">@style/AppTheme.ToolbarStyle</item>
         <item name="toolbarStyle">@style/AppTheme.ToolbarStyle</item>
         <item name="android:splitMotionEvents">true</item>
@@ -19,7 +19,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
-        <!-- Customize your theme here. -->
     </style>
 
     <style name="AppTheme.ToolbarStyle" parent="Widget.AppCompat.Toolbar">
