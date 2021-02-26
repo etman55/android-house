@@ -10,7 +10,7 @@ this project is just for fun
 
 other features will follow.
 
-#App Architecture
+# App Architecture
 
 Clean-Architecture by uncle pop (Robert Cecil Martin)  this project is adoption for clean architecture in android
 
