@@ -1,10 +1,13 @@
 package com.atef.clubhouse.base
 
+import android.content.Context
+import com.atef.clubhouse.utils.NetworkStateDialog
+
 data class Resource<out T>(
     val status: Status,
     val data: T?,
     val message: String?,
-    val messageRes: Int?
+    val messageRes: Int?,
 ) {
 
     companion object {
@@ -26,4 +29,26 @@ enum class Status {
     LOADING,
     ERROR,
     SUCCESS
+}
+
+inline fun <reified T : Any> Resource<T>.handleResource(
+    context: Context,
+    onLoading: () -> Unit = {},
+    onSuccess: (T?) -> Unit = {},
+    onError: (String?, Int?) -> Unit,
+) {
+    when (this.status) {
+        Status.LOADING -> {
+            NetworkStateDialog.show(context)
+            onLoading()
+        }
+        Status.SUCCESS -> {
+            NetworkStateDialog.dismiss()
+            onSuccess(this.data)
+        }
+        Status.ERROR -> {
+            NetworkStateDialog.dismiss()
+            onError(this.message, this.messageRes)
+        }
+    }
 }

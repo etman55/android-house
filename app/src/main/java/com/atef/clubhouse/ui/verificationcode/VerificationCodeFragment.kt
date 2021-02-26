@@ -10,6 +10,7 @@ import com.atef.clubhouse.R
 import com.atef.clubhouse.base.Resource
 import com.atef.clubhouse.base.Status
 import com.atef.clubhouse.base.extension.viewBinding
+import com.atef.clubhouse.base.handleResource
 import com.atef.clubhouse.data.remote.feature.auth.model.CompletePhoneNumberAuthResponse
 import com.atef.clubhouse.databinding.FragmentVerificationCodeBinding
 import com.atef.clubhouse.utils.NetworkStateDialog
@@ -42,34 +43,23 @@ class VerificationCodeFragment : Fragment(R.layout.fragment_verification_code) {
     }
 
     private fun handleResendVerificationCode(resource: Resource<Unit>) {
-        when (resource.status) {
-            Status.LOADING -> NetworkStateDialog.show(requireContext())
-            Status.SUCCESS -> {
-                NetworkStateDialog.dismiss()
-            }
-            Status.ERROR -> {
-                NetworkStateDialog.dismiss()
-                resource.messageRes?.let { binding.resendCodeBtn.snack(it) }
-                resource.message?.let { binding.resendCodeBtn.snack(it) }
-            }
-        }
+        resource.handleResource(requireContext(),
+            onError = { msg: String?, msgRes: Int? ->
+                msgRes?.let { binding.resendCodeBtn.snack(it) }
+                msg?.let { binding.resendCodeBtn.snack(it) }
+            })
     }
 
     private fun handleCompleteAuth(resource: Resource<CompletePhoneNumberAuthResponse>) {
-        when (resource.status) {
-            Status.LOADING -> NetworkStateDialog.show(requireContext())
-            Status.SUCCESS -> {
-                NetworkStateDialog.dismiss()
-                resource.data?.isWaitListed?.let {
+        resource.handleResource(requireContext(),
+            onSuccess = { response ->
+                response?.isWaitListed?.let {
                     if (it) viewModel.navigateToWaitListed() else viewModel.navigateHome()
                 }
-            }
-            Status.ERROR -> {
-                NetworkStateDialog.dismiss()
-                resource.messageRes?.let { binding.resendCodeBtn.snack(it) }
-                resource.message?.let { binding.resendCodeBtn.snack(it) }
-            }
-        }
+            }, onError = { msg, msgRes ->
+                msgRes?.let { binding.resendCodeBtn.snack(it) }
+                msg?.let { binding.resendCodeBtn.snack(it) }
+            })
     }
 
     private fun handleNavigation(navigation: VerificationCodeNavigation) {

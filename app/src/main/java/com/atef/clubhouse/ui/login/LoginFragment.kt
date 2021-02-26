@@ -11,6 +11,7 @@ import com.atef.clubhouse.R
 import com.atef.clubhouse.base.Resource
 import com.atef.clubhouse.base.Status
 import com.atef.clubhouse.base.extension.viewBinding
+import com.atef.clubhouse.base.handleResource
 import com.atef.clubhouse.data.remote.base.model.BaseResponse
 import com.atef.clubhouse.databinding.FragmentLoginBinding
 import com.atef.clubhouse.domain.entity.country.Country
@@ -50,18 +51,13 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun handleStartPhoneAuth(resource: Resource<BaseResponse>) {
-        when (resource.status) {
-            Status.LOADING -> NetworkStateDialog.show(requireContext())
-            Status.SUCCESS -> {
-                NetworkStateDialog.dismiss()
+        resource.handleResource(requireContext(),
+            onSuccess = {
                 viewModel.navigateToVerificationCode("${binding.countryCodeBtn.text}${binding.phoneNumberTxt.editableText.trim()}")
-            }
-            Status.ERROR -> {
-                NetworkStateDialog.dismiss()
-                resource.message?.let { binding.countryCodeBtn.snack(it) }
-                resource.messageRes?.let { binding.countryCodeBtn.snack(it) }
-            }
-        }
+            }, onError = { msg: String?, msgRes: Int? ->
+                msg?.let { binding.countryCodeBtn.snack(it) }
+                msgRes?.let { binding.countryCodeBtn.snack(it) }
+            })
     }
 
     private fun handleSelectedCountry(country: Country) {
