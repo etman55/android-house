@@ -2,7 +2,7 @@
 
 
 
-# [Unofficial club house version](https://github.com/etman55/android-house) inspired by [this](https://github.com/zhuowei/ClubhouseAPI).
+# [Unofficial club house android version](https://github.com/etman55/android-house) inspired by [this](https://github.com/zhuowei/ClubhouseAPI).
 
 this project is just for fun
 
