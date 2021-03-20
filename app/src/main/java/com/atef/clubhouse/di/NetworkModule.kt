@@ -4,7 +4,9 @@ import android.content.Context
 import com.atef.clubhouse.BuildConfig
 import com.atef.clubhouse.data.base.RetrofitFactory
 import com.atef.clubhouse.data.feature.auth.AuthLocalDataSource
+import com.atef.clubhouse.data.feature.home.HomeRemoteDataSource
 import com.atef.clubhouse.data.remote.feature.auth.service.AuthApiHandler
+import com.atef.clubhouse.data.remote.feature.home.service.HomeApiHandler
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -22,23 +24,38 @@ object NetworkModule {
     fun provideBaseURL(): String = BuildConfig.BASE_URL
 
     @[Provides Singleton]
-    fun provideApiHandler(
-        baseUrl: String,
-        @ApplicationContext context: Context,
-        authLocalDataSource: AuthLocalDataSource,
+    fun provideAuthApiHandler(
+            baseUrl: String,
+            @ApplicationContext context: Context,
+            authLocalDataSource: AuthLocalDataSource,
     ): AuthApiHandler {
         return RetrofitFactory.makeServiceHandler(
-            baseUrl,
-            AuthApiHandler::class.java,
-            BuildConfig.DEBUG,
-            context,
-            authLocalDataSource
+                baseUrl,
+                AuthApiHandler::class.java,
+                BuildConfig.DEBUG,
+                context,
+                authLocalDataSource
         ) as AuthApiHandler
     }
 
     @[Provides Singleton]
+    fun provideHomeApiHandler(
+            baseUrl: String,
+            @ApplicationContext context: Context,
+            homeRemoteDataSource: HomeRemoteDataSource,
+    ): HomeApiHandler {
+        return RetrofitFactory.makeServiceHandler(
+                baseUrl,
+                HomeApiHandler::class.java,
+                BuildConfig.DEBUG,
+                context,
+                homeRemoteDataSource
+        ) as HomeApiHandler
+    }
+
+    @[Provides Singleton]
     fun provideGson(): Gson = GsonBuilder()
-        .setLenient()
-        .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
-        .create()
+            .setLenient()
+            .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
+            .create()
 }

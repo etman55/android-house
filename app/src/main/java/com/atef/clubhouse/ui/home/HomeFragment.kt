@@ -7,9 +7,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.atef.clubhouse.AuthGraphDirections
 import com.atef.clubhouse.R
+import com.atef.clubhouse.base.Resource
 import com.atef.clubhouse.base.extension.viewBinding
+import com.atef.clubhouse.base.handleResource
+import com.atef.clubhouse.data.remote.feature.auth.model.CompletePhoneNumberAuthResponse
+import com.atef.clubhouse.data.remote.feature.home.model.ChannelsResponse
 import com.atef.clubhouse.databinding.FragmentHomeBinding
 import com.atef.clubhouse.domain.entity.auth.User
+import com.atef.clubhouse.utils.snack
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -22,6 +27,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         viewModel.apply {
             observeNavigation(viewLifecycleOwner, ::handleNavigation)
             user.observe(viewLifecycleOwner, ::handleUserData)
+            channels.observe(viewLifecycleOwner, ::handleChannels)
         }
         binding.logoutBtn.setOnClickListener { viewModel.navigateToLogout() }
         viewModel.getUser()
@@ -34,6 +40,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     private fun handleUserData(user: User?) {
         binding.welcomeTxt.text = getString(R.string.welcome_message, user?.name ?: "")
+    }
+
+    private fun handleChannels(resource: Resource<ChannelsResponse>) {
+        resource.handleResource(requireContext(),
+                onSuccess = { response ->
+                    response?.channels?.get(0)?.let { binding.welcomeTxt.snack(it.channel) }
+                }, onError = { msg, msgRes ->
+            msgRes?.let { binding.welcomeTxt.snack(it) }
+            msg?.let { binding.welcomeTxt.snack(it) }
+        })
     }
 
 }
