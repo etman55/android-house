@@ -4,7 +4,6 @@ import android.content.Context
 import com.atef.clubhouse.BuildConfig
 import com.atef.clubhouse.data.base.RetrofitFactory
 import com.atef.clubhouse.data.feature.auth.AuthLocalDataSource
-import com.atef.clubhouse.data.feature.home.HomeRemoteDataSource
 import com.atef.clubhouse.data.remote.feature.auth.service.AuthApiHandler
 import com.atef.clubhouse.data.remote.feature.home.service.HomeApiHandler
 import com.google.gson.Gson
@@ -42,14 +41,14 @@ object NetworkModule {
     fun provideHomeApiHandler(
             baseUrl: String,
             @ApplicationContext context: Context,
-            homeRemoteDataSource: HomeRemoteDataSource,
+            authLocalDataSource: AuthLocalDataSource,
     ): HomeApiHandler {
         return RetrofitFactory.makeServiceHandler(
                 baseUrl,
                 HomeApiHandler::class.java,
                 BuildConfig.DEBUG,
                 context,
-                homeRemoteDataSource
+                authLocalDataSource
         ) as HomeApiHandler
     }
 
