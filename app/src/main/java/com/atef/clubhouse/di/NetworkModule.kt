@@ -5,7 +5,7 @@ import com.atef.clubhouse.BuildConfig
 import com.atef.clubhouse.data.base.RetrofitFactory
 import com.atef.clubhouse.data.feature.auth.AuthLocalDataSource
 import com.atef.clubhouse.data.remote.feature.auth.service.AuthApiHandler
-import com.atef.clubhouse.data.remote.feature.home.service.HomeApiHandler
+import com.atef.clubhouse.data.remote.feature.home.service.ChannelsApiHandler
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -42,14 +42,14 @@ object NetworkModule {
             baseUrl: String,
             @ApplicationContext context: Context,
             authLocalDataSource: AuthLocalDataSource,
-    ): HomeApiHandler {
+    ): ChannelsApiHandler {
         return RetrofitFactory.makeServiceHandler(
                 baseUrl,
-                HomeApiHandler::class.java,
+                ChannelsApiHandler::class.java,
                 BuildConfig.DEBUG,
                 context,
                 authLocalDataSource
-        ) as HomeApiHandler
+        ) as ChannelsApiHandler
     }
 
     @[Provides Singleton]

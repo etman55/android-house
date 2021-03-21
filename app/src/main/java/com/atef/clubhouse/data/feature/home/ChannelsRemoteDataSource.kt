@@ -7,7 +7,7 @@ import com.atef.clubhouse.data.remote.feature.home.model.ChannelsResponse
 import com.atef.clubhouse.domain.entity.auth.User
 import kotlinx.coroutines.flow.Flow
 
-interface HomeRemoteDataSource {
+interface ChannelsRemoteDataSource {
     suspend fun getChannels(): Result<ChannelsResponse>
 
 }
