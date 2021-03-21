@@ -10,20 +10,20 @@ data class ChannelResponse(
         val creatorUserProfileId: Int,
         @SerializedName("channel_id")
         val channelId: Int,
-        val channel: String,
-        val topic: String,
+        val channel: String?,
+        val topic: String?,
         @SerializedName("is_private")
         val isPrivate: Boolean,
         @SerializedName("is_social_mode")
         val isSocialMode: Boolean,
-        val url: String,
+        val url: String?,
         val club: ClubResponse,
         @SerializedName("club_name")
-        val clubName: String,
+        val clubName: String?,
         @SerializedName("club_id")
         val clubId: Int,
         @SerializedName("welcome_for_user_profile")
-        val welcomeForUserProfile: String,
+        val welcomeForUserProfile: String?,
         @SerializedName("num_other")
         val numOther: Int,
         @SerializedName("has_blocked_speakers")

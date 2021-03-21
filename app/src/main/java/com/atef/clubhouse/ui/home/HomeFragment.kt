@@ -29,6 +29,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             channels.observe(viewLifecycleOwner, ::handleChannels)
         }
         binding.logoutBtn.setOnClickListener { viewModel.navigateToLogout() }
+        binding.welcomeTxt.setOnClickListener { viewModel.getChannels() }
         viewModel.getUser()
         viewModel.getChannels()
     }
@@ -45,7 +46,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private fun handleChannels(resource: Resource<List<Channel>>) {
         resource.handleResource(requireContext(),
                 onSuccess = { response ->
-                    response?.get(0)?.let { binding.welcomeTxt.snack(it.channel) }
+                    response?.get(0)?.let { binding.welcomeTxt.snack(it.channel?:"asdasd") }
                 }, onError = { msg, msgRes ->
             msgRes?.let { binding.welcomeTxt.snack(it) }
             msg?.let { binding.welcomeTxt.snack(it) }
