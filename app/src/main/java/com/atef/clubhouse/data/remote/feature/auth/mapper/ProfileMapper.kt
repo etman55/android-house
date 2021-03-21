@@ -11,10 +11,7 @@ class ProfileMapper @Inject constructor() : RemoteModelMapper<ProfileResponse, U
             User(userId = userId,
                 name = name,
                 photoUrl = photoUrl,
-                username = username,
-                isWaitListed = false,
-                isVerified = true,
-                isOnBoarding = true
+                username = username
             )
         }
     }

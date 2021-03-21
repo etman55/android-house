@@ -5,10 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.atef.clubhouse.base.BaseViewModel
 import com.atef.clubhouse.base.Resource
 import com.atef.clubhouse.base.extension.mutable
-import com.atef.clubhouse.data.remote.feature.home.model.ChannelsResponse
 import com.atef.clubhouse.domain.entity.auth.User
 import com.atef.clubhouse.domain.entity.home.Channel
-import com.atef.clubhouse.domain.feature.auth.CompletePhoneNumberAuthUseCase
 import com.atef.clubhouse.domain.feature.auth.LogoutUserCase
 import com.atef.clubhouse.domain.feature.auth.UserUseCase
 import com.atef.clubhouse.domain.feature.home.GetChannelsUseCase
@@ -22,7 +20,7 @@ class HomeViewModel @ViewModelInject constructor(
 ) : BaseViewModel<HomeNavigation>() {
 
     val user = mutable<User?>()
-    val channels = mutable<Resource<ChannelsResponse>>()
+    val channels = mutable<Resource<List<Channel>>>()
 
     init {
         getUser()

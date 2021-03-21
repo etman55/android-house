@@ -7,6 +7,7 @@ import com.atef.clubhouse.data.remote.feature.auth.AuthRemoteDataSourceImpl
 import com.atef.clubhouse.data.remote.feature.auth.mapper.ProfileMapper
 import com.atef.clubhouse.data.remote.feature.auth.mapper.UserMapper
 import com.atef.clubhouse.data.remote.feature.auth.model.CompletePhoneNumberAuthResponse
+import com.atef.clubhouse.data.remote.feature.auth.model.ProfileResponse
 import com.atef.clubhouse.data.remote.feature.home.HomeRemoteDataSourceImpl
 import com.atef.clubhouse.data.remote.feature.home.mapper.ChannelMapper
 import com.atef.clubhouse.data.remote.feature.home.model.ChannelResponse
@@ -36,7 +37,7 @@ interface RemoteModule {
     val UserMapper.userMapper: RemoteModelMapper<CompletePhoneNumberAuthResponse, User>
 
     @get:[Binds Singleton]
-    val ProfileMapper.profileMapper: RemoteModelMapper<ProfileMapper, User>
+    val ProfileMapper.profileMapper: RemoteModelMapper<ProfileResponse, User>
 
     @get:[Binds Singleton]
     val ChannelMapper.channelMapper: RemoteModelMapper<ChannelResponse, Channel>
