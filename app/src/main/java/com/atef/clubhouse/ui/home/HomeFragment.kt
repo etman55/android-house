@@ -12,7 +12,7 @@ import com.atef.clubhouse.base.extension.viewBinding
 import com.atef.clubhouse.base.handleResource
 import com.atef.clubhouse.databinding.FragmentHomeBinding
 import com.atef.clubhouse.domain.entity.auth.User
-import com.atef.clubhouse.domain.entity.home.Channel
+import com.atef.clubhouse.domain.entity.channels.Channel
 import com.atef.clubhouse.utils.ImageLoader
 import com.atef.clubhouse.utils.snack
 import dagger.hilt.android.AndroidEntryPoint

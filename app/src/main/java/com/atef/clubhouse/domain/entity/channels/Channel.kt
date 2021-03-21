@@ -1,9 +1,7 @@
-package com.atef.clubhouse.domain.entity.home
+package com.atef.clubhouse.domain.entity.channels
 
 import androidx.annotation.Keep
-import com.atef.clubhouse.data.remote.feature.auth.model.ProfileResponse
 import com.atef.clubhouse.domain.entity.auth.User
-import com.google.gson.annotations.SerializedName
 
 @Keep
 data class Channel(

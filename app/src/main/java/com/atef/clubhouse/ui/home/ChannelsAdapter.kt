@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.atef.clubhouse.databinding.ItemChannelBinding
-import com.atef.clubhouse.domain.entity.home.Channel
+import com.atef.clubhouse.domain.entity.channels.Channel
 import com.atef.clubhouse.utils.ImageLoader
 import com.atef.clubhouse.utils.adapterProperty
 

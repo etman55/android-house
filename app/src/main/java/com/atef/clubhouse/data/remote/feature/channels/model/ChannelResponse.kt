@@ -1,4 +1,4 @@
-package com.atef.clubhouse.data.remote.feature.home.model
+package com.atef.clubhouse.data.remote.feature.channels.model
 
 import androidx.annotation.Keep
 import com.atef.clubhouse.data.remote.feature.auth.model.ProfileResponse

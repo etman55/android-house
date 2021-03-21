@@ -5,7 +5,7 @@ import com.atef.clubhouse.BuildConfig
 import com.atef.clubhouse.data.base.RetrofitFactory
 import com.atef.clubhouse.data.feature.auth.AuthLocalDataSource
 import com.atef.clubhouse.data.remote.feature.auth.service.AuthApiHandler
-import com.atef.clubhouse.data.remote.feature.home.service.ChannelsApiHandler
+import com.atef.clubhouse.data.remote.feature.channels.service.ChannelsApiHandler
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module

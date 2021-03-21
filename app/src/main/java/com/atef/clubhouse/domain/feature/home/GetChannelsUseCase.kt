@@ -3,7 +3,7 @@ package com.atef.clubhouse.domain.feature.home
 import com.atef.clubhouse.data.remote.base.model.Result
 import com.atef.clubhouse.domain.base.coroutines.CoroutineDispatcherProvider
 import com.atef.clubhouse.domain.base.usecase.SuspendingInteractor
-import com.atef.clubhouse.domain.entity.home.Channel
+import com.atef.clubhouse.domain.entity.channels.Channel
 import com.atef.clubhouse.domain.repository.ChannelsRepository
 import javax.inject.Inject
 

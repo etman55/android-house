@@ -1,9 +1,9 @@
-package com.atef.clubhouse.data.remote.feature.home
+package com.atef.clubhouse.data.remote.feature.channels
 
 import com.atef.clubhouse.data.feature.home.ChannelsRemoteDataSource
 import com.atef.clubhouse.data.remote.base.model.Result
-import com.atef.clubhouse.data.remote.feature.home.model.ChannelsResponse
-import com.atef.clubhouse.data.remote.feature.home.service.ChannelsApiHandler
+import com.atef.clubhouse.data.remote.feature.channels.model.ChannelsResponse
+import com.atef.clubhouse.data.remote.feature.channels.service.ChannelsApiHandler
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
 import javax.inject.Inject
