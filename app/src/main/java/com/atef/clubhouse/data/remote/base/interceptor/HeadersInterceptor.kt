@@ -5,8 +5,10 @@ import com.atef.clubhouse.data.feature.auth.AuthLocalDataSource
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.newSingleThreadContext
+import kotlinx.coroutines.runBlocking
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.util.UUID
@@ -40,17 +42,11 @@ class HeadersInterceptor @Inject constructor(
         if (userIdHeader != null && userIdHeader.length <= 1 ||
             tokenHeader != null && tokenHeader.length <= 1
         ) {
-            singleThreadCoroutineScope.launch {
-                authLocalDataSource.user.collect {
-                    val user = it
-                    user?.userId?.let {
-                        requestBuilder.addHeader(USER_ID_HEADER, "${user.userId}")
-                    }
-                }
-                authLocalDataSource.token.collect {
-                    val token = it
-                    requestBuilder.addHeader(HEADER_TOKEN, "Token $token")
-                }
+            runBlocking {
+                requestBuilder.removeHeader(USER_ID_HEADER)
+                requestBuilder.removeHeader(HEADER_TOKEN)
+                requestBuilder.addHeader(USER_ID_HEADER, authLocalDataSource.user.first()?.userId.toString())
+                requestBuilder.addHeader(HEADER_TOKEN, "token "+authLocalDataSource.token.first().toString())
             }
         }
         request = requestBuilder.build()
