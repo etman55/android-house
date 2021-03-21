@@ -21,6 +21,7 @@ class HomeViewModel @ViewModelInject constructor(
 
     val user = mutable<User?>()
     val channels = mutable<Resource<List<Channel>>>()
+    val selectedChannel = mutable<Channel>()
 
     init {
         getUser()
@@ -47,6 +48,10 @@ class HomeViewModel @ViewModelInject constructor(
     fun navigateToLogout() {
         logoutUserCase()
         navigationEvent.postValue(HomeNavigation.Logout)
+    }
+
+    fun navigateToSelectChannel(channel: Channel) {
+        selectedChannel.postValue(channel)
     }
 
 }

@@ -6,4 +6,5 @@ import android.widget.ImageView
 interface ImageLoader {
     fun loadImage(view: ImageView, url: String)
     fun loadImage(view: ImageView, drawable: BitmapDrawable)
+    fun loadCircleImage(view: ImageView, url: String)
 }
