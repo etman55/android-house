@@ -17,7 +17,8 @@ class ChannelsAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(ItemChannelBinding.inflate(LayoutInflater.from(parent.context), parent, false),
             imageLoader,
-            onClick)
+            onClick
+        )
     }
 
     override fun getItemCount(): Int = items.size
@@ -32,9 +33,9 @@ class ChannelsAdapter(
         fun bind(channel: Channel) {
             with(binding) {
                 itemView.setOnClickListener { onClick(channel) }
-                channel.users.get(0).photoUrl?.let { imageLoader.loadCircleImage(firstUserImg, it) }
-                channel.users.get(1).photoUrl?.let { imageLoader.loadCircleImage(secondUserImg, it) }
-                var channelsUsersAdapter : ChannelUsersAdapter = ChannelUsersAdapter()
+                channel.users.getOrNull(0)?.photoUrl?.let { imageLoader.loadCircleImage(firstUserImg, it) }
+                channel.users.getOrNull(1)?.photoUrl?.let { imageLoader.loadCircleImage(secondUserImg, it) }
+                val channelsUsersAdapter: ChannelUsersAdapter = ChannelUsersAdapter()
                 channelsUsersAdapter?.items = channel.users
                 speakersList.apply {
                     adapter = channelsUsersAdapter

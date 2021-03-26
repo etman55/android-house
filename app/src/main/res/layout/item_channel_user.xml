@@ -12,13 +12,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginVertical="@dimen/space_8x"
-        android:layout_marginEnd="@dimen/space_16x"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintStart_toStartOf="parent"
         android:drawableEnd="@drawable/ic_chat"
         android:textColor="@color/grey_800"
         android:drawablePadding="@dimen/space_8x"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Channel Topic" />
+        tools:text="Channel User" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

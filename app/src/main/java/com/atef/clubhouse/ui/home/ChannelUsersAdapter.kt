@@ -15,7 +15,7 @@ class ChannelUsersAdapter(
         return ViewHolder(ItemChannelUserBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
-    override fun getItemCount(): Int = 3
+    override fun getItemCount(): Int = if (items.size>=3) 3 else items.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) = holder.bind(items[position])
 

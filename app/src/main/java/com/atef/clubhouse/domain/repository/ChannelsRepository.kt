@@ -5,7 +5,6 @@ import com.atef.clubhouse.domain.entity.channels.Channel
 
 interface ChannelsRepository {
 
-    suspend fun getChannels(
-    ): Result<List<Channel>>
+    suspend fun getChannels(): Result<List<Channel>>
 
 }

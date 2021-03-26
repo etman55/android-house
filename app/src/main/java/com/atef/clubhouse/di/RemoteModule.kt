@@ -2,7 +2,7 @@ package com.atef.clubhouse.di
 
 import com.atef.clubhouse.data.base.mapper.RemoteModelMapper
 import com.atef.clubhouse.data.feature.auth.AuthRemoteDataSource
-import com.atef.clubhouse.data.feature.home.ChannelsRemoteDataSource
+import com.atef.clubhouse.data.feature.channels.ChannelsRemoteDataSource
 import com.atef.clubhouse.data.remote.feature.auth.AuthRemoteDataSourceImpl
 import com.atef.clubhouse.data.remote.feature.auth.mapper.ProfileMapper
 import com.atef.clubhouse.data.remote.feature.auth.mapper.UserMapper

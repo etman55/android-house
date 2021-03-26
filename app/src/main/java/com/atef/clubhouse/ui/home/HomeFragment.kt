@@ -11,10 +11,9 @@ import com.atef.clubhouse.base.Resource
 import com.atef.clubhouse.base.extension.viewBinding
 import com.atef.clubhouse.base.handleResource
 import com.atef.clubhouse.databinding.FragmentHomeBinding
-import com.atef.clubhouse.domain.entity.auth.User
 import com.atef.clubhouse.domain.entity.channels.Channel
 import com.atef.clubhouse.utils.ImageLoader
-import com.atef.clubhouse.utils.snack
+import com.atef.clubhouse.utils.NetworkStateDialog
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -31,11 +30,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.apply {
             observeNavigation(viewLifecycleOwner, ::handleNavigation)
-            user.observe(viewLifecycleOwner, ::handleUserData)
             channels.observe(viewLifecycleOwner, ::handleChannels)
         }
-        binding.logoutBtn.setOnClickListener { viewModel.navigateToLogout() }
-        binding.welcomeTxt.setOnClickListener { viewModel.getChannels() }
+        binding.swipeRefresh.setOnRefreshListener {
+            viewModel.getChannels()
+            binding.swipeRefresh.isRefreshing = false   // reset the SwipeRefreshLayout (stop the loading spinner)
+            NetworkStateDialog.show(requireContext())
+        }
+
+        NetworkStateDialog.show(requireContext())
         viewModel.getUser()
         viewModel.getChannels()
     }
@@ -45,24 +48,20 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             findNavController().navigate(AuthGraphDirections.actionGlobalAuthGraph())
     }
 
-    private fun handleUserData(user: User?) {
-        binding.welcomeTxt.text = getString(R.string.welcome_message, user?.name ?: "")
-    }
-
     private fun handleChannels(resource: Resource<List<Channel>>) {
         resource.handleResource(requireContext(),
-                onSuccess = { response ->
-                    channelAdapter = ChannelsAdapter(imageLoader){
-                        viewModel.navigateToSelectChannel(it)
-                    }
-                    channelAdapter?.items = response!!
-                    binding.channelsList.apply {
-                        adapter = channelAdapter
-                        setHasFixedSize(true)
-                    }
-                }, onError = { msg, msgRes ->
-            msgRes?.let { binding.welcomeTxt.snack(it) }
-            msg?.let { binding.welcomeTxt.snack(it) }
+            onSuccess = { response ->
+                NetworkStateDialog.dismiss()
+                channelAdapter = ChannelsAdapter(imageLoader) {
+                    viewModel.navigateToSelectChannel(it)
+                }
+                channelAdapter?.items = response!!
+                binding.channelsList.apply {
+                    adapter = channelAdapter
+                    setHasFixedSize(true)
+                }
+            }, onError = { msg, msgRes ->
+            NetworkStateDialog.dismiss()
         })
     }
 

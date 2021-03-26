@@ -1,6 +1,6 @@
 package com.atef.clubhouse.data.remote.feature.channels
 
-import com.atef.clubhouse.data.feature.home.ChannelsRemoteDataSource
+import com.atef.clubhouse.data.feature.channels.ChannelsRemoteDataSource
 import com.atef.clubhouse.data.remote.base.model.Result
 import com.atef.clubhouse.data.remote.feature.channels.model.ChannelsResponse
 import com.atef.clubhouse.data.remote.feature.channels.service.ChannelsApiHandler

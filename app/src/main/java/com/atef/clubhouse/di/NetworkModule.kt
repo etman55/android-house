@@ -38,7 +38,7 @@ object NetworkModule {
     }
 
     @[Provides Singleton]
-    fun provideHomeApiHandler(
+    fun provideChannelsApiHandler(
             baseUrl: String,
             @ApplicationContext context: Context,
             authLocalDataSource: AuthLocalDataSource,
