@@ -20,7 +20,8 @@ class CountriesAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(ItemCountryBinding.inflate(LayoutInflater.from(parent.context), parent, false),
             imageLoader,
-            onClick)
+            onClick
+        )
     }
 
     override fun getItemCount(): Int = items.size

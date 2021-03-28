@@ -282,4 +282,5 @@
     <color name="white">#FFFFFF</color>
     <color name="transparent">#00000000</color>
     <color name="transparent_grey">#90000000</color>
+    <color name="grey">#b3b3b3</color>
 </resources>

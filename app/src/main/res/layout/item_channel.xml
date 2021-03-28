@@ -4,13 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/space_16x"
+    android:layout_marginHorizontal="@dimen/space_16x"
+    android:layout_marginTop="@dimen/space_4x"
+    android:layout_marginBottom="@dimen/space_16x"
     app:cardCornerRadius="@dimen/space_16x"
     app:cardElevation="@dimen/space_8x">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_16x">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/channelTopicTxt"
@@ -27,57 +30,63 @@
             tools:text="Channel Topic" />
 
         <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/secondUserImg"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="25dp"
+            android:src="@drawable/circle_image_bg"
+            app:layout_constraintBottom_toBottomOf="@id/firstUserImg"
+            app:layout_constraintStart_toStartOf="@id/firstUserImg"
+            app:layout_constraintTop_toBottomOf="@id/firstUserImg" />
+
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/firstUserImg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_marginTop="@dimen/space_16x"
             android:src="@drawable/circle_image_bg"
             app:layout_constraintStart_toStartOf="@id/channelTopicTxt"
             app:layout_constraintTop_toBottomOf="@id/channelTopicTxt" />
 
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/secondUserImg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_24x"
-            android:layout_marginTop="@dimen/space_48x"
-            android:src="@drawable/circle_image_bg"
-            app:layout_constraintStart_toStartOf="@id/channelTopicTxt"
-            app:layout_constraintTop_toBottomOf="@id/channelTopicTxt" />
 
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/speakersTxt"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/speakersList"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_16x"
             android:layout_marginEnd="@dimen/space_16x"
+            tools:itemCount="3"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/secondUserImg"
             app:layout_constraintTop_toTopOf="@id/firstUserImg"
-            tools:text="Speakers" />
+            tools:listitem="@layout/item_channel_user" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/numberOfMembersTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_16x"
+            android:layout_marginTop="@dimen/space_8x"
             android:drawableEnd="@drawable/ic_baseline_person_24"
             android:drawablePadding="@dimen/space_8x"
-            app:layout_constraintStart_toStartOf="@id/speakersTxt"
-            app:layout_constraintTop_toBottomOf="@id/speakersTxt"
+            android:textColor="@color/grey"
+            app:layout_constraintStart_toStartOf="@id/speakersList"
+            app:layout_constraintTop_toBottomOf="@id/speakersList"
             tools:text="99" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/numberOfSpeakersTxt"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_16x"
+            android:layout_marginStart="@dimen/space_8x"
             android:layout_marginEnd="@dimen/space_16x"
-            android:drawableEnd="@drawable/ic_baseline_message_24"
+            android:drawableEnd="@drawable/ic_speakers_icon"
             android:drawablePadding="@dimen/space_8x"
+            android:textColor="@color/grey"
             app:layout_constraintStart_toEndOf="@id/numberOfMembersTxt"
             app:layout_constraintTop_toTopOf="@id/numberOfMembersTxt"
-            tools:text="99" />
+            app:layout_constraintBottom_toBottomOf="@id/numberOfMembersTxt"
+            tools:text="/  99" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </com.google.android.material.card.MaterialCardView>
